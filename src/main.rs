@@ -17,13 +17,13 @@ fn main() {
 
 
     let set2 = Set {
-        position: 0,
+        position: 1,
         reps: 5,
         weight: 225
     };
     
     let set3 = Set {
-        position: 0,
+        position: 2,
         reps: 4,
         weight: 225
     };
