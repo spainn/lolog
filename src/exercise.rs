@@ -1,20 +1,20 @@
-struct Exercise {
-    movement: Movement,
-    position: u32,
-    num_sets: u32,
-    sets: Vec<Set>,
+pub struct Exercise {
+    pub movement: Movement,
+    pub position: u32,
+    pub num_sets: u32,
+    pub sets: Vec<Set>,
 }
 
-struct Movement {
-    name: String,
-    main_mover: String,
-    default_to_failure: bool,
+pub struct Movement {
+    pub name: String,
+    pub main_mover: String,
+    pub default_to_failure: bool,
 }
 
-struct Set {
-    position: u32,
-    reps: u32,
-    weight: u32,
+pub struct Set {
+    pub position: u32,
+    pub reps: u32,
+    pub weight: u32,
 }
 
 impl Exercise {
