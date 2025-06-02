@@ -1,20 +1,14 @@
+pub struct Workout {
+    pub name: String,
+    pub date: String,
+    pub exercises: Vec<Exercise>
+}
+
 pub struct Exercise {
     pub movement: Movement,
     pub position: u32,
     pub num_sets: u32,
     pub sets: Vec<Set>,
-}
-
-pub struct Movement {
-    pub name: String,
-    pub main_mover: String,
-    pub default_to_failure: bool,
-}
-
-pub struct Set {
-    pub position: u32,
-    pub reps: u32,
-    pub weight: u32,
 }
 
 impl Exercise {
@@ -27,7 +21,19 @@ impl Exercise {
 
         weight_moved
     }
+}
 
+pub struct Movement {
+    pub name: String,
+    pub alias: String,
+    pub main_mover: String,
+    pub default_to_failure: bool,
+}
+
+pub struct Set {
+    pub position: u32,
+    pub reps: u32,
+    pub weight: u32,
 }
 
 #[cfg(test)]
@@ -39,6 +45,7 @@ mod test {
 
         let bench_press = Movement {
             name: "bench press".to_string(),
+            alias: "bp".to_string(),
             main_mover: "chest".to_string(),
             default_to_failure: false,
         };
