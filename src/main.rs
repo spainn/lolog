@@ -1,7 +1,7 @@
 // TODO
 // make readable from text file (some way to input workouts)
 // some way to define movements and workouts persistently
-// 
+//
 mod exercise;
 mod parser;
 
@@ -12,4 +12,8 @@ fn main() {
     for m in movements {
         println!("{}", m.name);
     }
+
+    println!("\n\n\n");
+
+    parser::parse_complete_workout();
 }
