@@ -1,3 +1,6 @@
+pub mod parser;
+use parser::parse_exercises;
+
 enum MovementPattern {
     HorizontalPress,
     Squat,
@@ -42,21 +45,37 @@ enum Muscle {
     Neck,
 }
 
-#[derive(Debug)]
-struct Exercise {
-    main_mover: Muscle,
-    sets: u32,
+enum Measurement {
+    Neck(u32),
+    Shoulders(u32),
+    Chest(u32),
+    Waist(u32),
+    LeftArm(u32),
+    RightArm(u32),
+    LeftForearm(u32),
+    RightForearm(u32),
+    LeftQuad(u32),
+    RightQuad(u32),
+    LeftCalf(u32),
+    RightCalf(u32),
+    
+    WaistFullExhale(u32),
+    LeftArmUnflexed(u32),
+    RightArmUnflexed(u32),
+    ChestNippleHeight(u32),
 }
+
+#[derive(Debug)]
+pub struct Exercise {
+    name: String,
+    main_mover: Muscle,
+}
+
+// an exercise and a number of sets
+struct ExerciseAndSets(Exercise, u32);
 
 // need to add a way to track volume and add workouts through cmd line
 
 fn main() {
-    let bench_press = Exercise { main_mover: Muscle::Chest(String::from("chest")) };
-    println!("{:?}", bench_press);
-
-    if let Muscle::Chest(s) = &bench_press.main_mover {
-        println!("Main mover is {}", s);
-    } else {
-        println!("Main mover is not chest.");
-    }
+    parse_exercises();
 }
