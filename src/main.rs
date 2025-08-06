@@ -1,5 +1,12 @@
 pub mod parser;
+
 use parser::parse_exercises;
+
+use std::str::FromStr;
+
+//macro_rules! string_to_muscle {
+//    ($enum_name:identifier, $value:expr, $pattern:pat =>)
+//}
 
 enum MovementPattern {
     HorizontalPress,
@@ -43,6 +50,10 @@ enum Muscle {
     Abs,
     Obliques,
     Neck,
+}
+
+impl FromStr for Muscle {
+    // temp
 }
 
 enum Measurement {
