@@ -1,11 +1,13 @@
 pub mod parser;
 
 use parser::parse_exercises;
+use parser::parse_bodyweights;
 
 use strum_macros::EnumString;
 
-#[derive(Debug, EnumString)]
+#[derive(Debug, EnumString, strum_macros::Display)]
 #[strum(ascii_case_insensitive)]
+#[strum(serialize_all = "title_case")]
 enum MovementPattern {
     HorizontalPress,
     OverheadPress,
@@ -24,8 +26,9 @@ enum MovementPattern {
     ShoulderIsolation
 }
 
-#[derive(Debug, EnumString)]
+#[derive(Debug, EnumString, strum_macros::Display)]
 #[strum(ascii_case_insensitive)]
+#[strum(serialize_all = "title_case")]
 enum Muscle {
     Chest,
     AnteriorDeltoids,
@@ -85,26 +88,34 @@ struct ExerciseAndSets(Exercise, u32);
 
 fn main() {
     parse_exercises();
+    parse_bodyweights();
 
-    println!("\n\n\n\n");
 
-    // movement pattern tests
-    let test1 = "hinge";
-    let test2 = "NECKISOLATION";
+//    println!("\n\n\n\n");
+//
+//    let test1a = MovementPattern::HorizontalPress;
+//    println!("{}", test1a.to_string());
+//
+//    let test2a = Muscle::LateralDeltoids;
+//    println!("{}", test2a.to_string());
 
-    // muscle tests
-    let test3 = "cHeSt";
-    let test4 = "AnteriorDeltoids";
-
-    let conv1: MovementPattern = test1.parse().unwrap();
-    let conv2: MovementPattern = test2.parse().unwrap();
-
-    println!("{:?}", conv1);
-    println!("{:?}", conv2);
-
-    let conv3: Muscle = test3.parse().unwrap();
-    let conv4: Muscle = test4.parse().unwrap();
-
-    println!("{:?}", conv3);
-    println!("{:?}", conv4);
+//    // movement pattern tests
+//    let test1 = "hinge";
+//    let test2 = "NECKISOLATION";
+//
+//    // muscle tests
+//    let test3 = "cHeSt";
+//    let test4 = "AnteriorDeltoids";
+//
+//    let conv1: MovementPattern = test1.parse().unwrap();
+//    let conv2: MovementPattern = test2.parse().unwrap();
+//
+//    println!("{:?}", conv1);
+//    println!("{:?}", conv2);
+//
+//    let conv3: Muscle = test3.parse().unwrap();
+//    let conv4: Muscle = test4.parse().unwrap();
+//
+//    println!("{:?}", conv3);
+//    println!("{:?}", conv4);
 }
