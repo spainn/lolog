@@ -22,22 +22,23 @@ pub fn parse_exercises() -> Vec<Exercise> {
     // TODOTODO convert to exercise and add to the returned vector
     for line in lines {
         println!("{line}");
+        let no_whitespace_line: String = line.chars().filter(|c| !c.is_whitespace()).collect();
 
-        let parts: Vec<&str> = line.split(",").collect();
+        let parts: Vec<&str> = no_whitespace_line.split(",").collect();
+
+        for part in &parts {
+            println!("{part}");
+        }
         exercises.push(
             Exercise {
                 name: parts[0].to_string(),
-                main_mover: parts[1]
+                main_mover: parts[1].parse().unwrap(),
+                movement_pattern: parts[2].parse().unwrap()
             }
         )
 
     }
 
-    // temp exercise vector
-//    vec!(Exercise {
-//        name: String::from("bench press"),
-//        main_mover: Muscle::Chest
-//    })
 
     return exercises;
 }

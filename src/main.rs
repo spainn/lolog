@@ -2,16 +2,15 @@ pub mod parser;
 
 use parser::parse_exercises;
 
-use std::str::FromStr;
+use strum_macros::EnumString;
 
-//macro_rules! string_to_muscle {
-//    ($enum_name:identifier, $value:expr, $pattern:pat =>)
-//}
-
+#[derive(Debug, EnumString)]
+#[strum(ascii_case_insensitive)]
 enum MovementPattern {
     HorizontalPress,
+    OverheadPress,
     Squat,
-    HipHinge,
+    Hinge,
     Row,
     VerticalPull,
     SupinatedCurl,
@@ -19,14 +18,14 @@ enum MovementPattern {
     TricepPressdown,
     TricepExtension,
     HamstringCurl,
-    ShoulderPress,
     AbIsolation,
     CalfIsolation,
     NeckIsolation,
     ShoulderIsolation
 }
 
-#[derive(Debug)]
+#[derive(Debug, EnumString)]
+#[strum(ascii_case_insensitive)]
 enum Muscle {
     Chest,
     AnteriorDeltoids,
@@ -50,10 +49,6 @@ enum Muscle {
     Abs,
     Obliques,
     Neck,
-}
-
-impl FromStr for Muscle {
-    // temp
 }
 
 enum Measurement {
@@ -80,6 +75,7 @@ enum Measurement {
 pub struct Exercise {
     name: String,
     main_mover: Muscle,
+    movement_pattern: MovementPattern,
 }
 
 // an exercise and a number of sets
@@ -89,4 +85,26 @@ struct ExerciseAndSets(Exercise, u32);
 
 fn main() {
     parse_exercises();
+
+    println!("\n\n\n\n");
+
+    // movement pattern tests
+    let test1 = "hinge";
+    let test2 = "NECKISOLATION";
+
+    // muscle tests
+    let test3 = "cHeSt";
+    let test4 = "AnteriorDeltoids";
+
+    let conv1: MovementPattern = test1.parse().unwrap();
+    let conv2: MovementPattern = test2.parse().unwrap();
+
+    println!("{:?}", conv1);
+    println!("{:?}", conv2);
+
+    let conv3: Muscle = test3.parse().unwrap();
+    let conv4: Muscle = test4.parse().unwrap();
+
+    println!("{:?}", conv3);
+    println!("{:?}", conv4);
 }
